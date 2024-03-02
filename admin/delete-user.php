@@ -1,3 +1,10 @@
+<?php 
+//diplay page with role 
+include "config.php";
+if($_SESSION['role']==0){
+    header("Location: {$hostname}/admin/post.php");
+}
+?>
 <?php
 
 include "config.php";

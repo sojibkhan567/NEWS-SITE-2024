@@ -1,4 +1,11 @@
 <?php include "header.php"; ?>
+<?php 
+//diplay page with role 
+include "config.php";
+if($_SESSION['role']==0){
+    header("Location: {$hostname}/admin/post.php");
+}
+?>
 <div id="admin-content">
     <div class="container">
         <div class="row">
