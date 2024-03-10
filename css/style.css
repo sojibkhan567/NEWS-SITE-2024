@@ -391,6 +391,9 @@ form{
 i.fa{
     color:#222;
 }
+.pagination > .active > a{
+    background-color: #0e497b !important;
+}
 
 /* Sidebar Styling */
 #sidebar h4{

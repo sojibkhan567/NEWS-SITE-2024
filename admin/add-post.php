@@ -7,7 +7,7 @@
              </div>
               <div class="col-md-offset-3 col-md-6">
                   <!-- Form -->
-                  <form  action="" method="POST" enctype="multipart/form-data">
+                  <form  action="save-post.php" method="POST" enctype="multipart/form-data">
                       <div class="form-group">
                           <label for="post_title">Title</label>
                           <input type="text" name="post_title" class="form-control" autocomplete="off" required>
@@ -17,14 +17,28 @@
                           <textarea name="postdesc" class="form-control" rows="5"  required></textarea>
                       </div>
                       <div class="form-group">
+                        <?php 
+                        //show category data
+                        include "config.php";
+
+                        $sql = "SELECT * FROM category";
+
+                        $result = mysqli_query($conn, $sql) or die("Query failed.");
+
+                        ?>
                           <label for="exampleInputPassword1">Category</label>
                           <select name="category" class="form-control">
-                              <option value="" selected> Select Category</option>
+                          <option value="" selected> Select Category</option>
+                            <?php 
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '<option value="'.$row['category_id'].'">'.$row['category_name'].'</option>';
+                            }
+                            ?>
                           </select>
                       </div>
                       <div class="form-group">
                           <label for="exampleInputPassword1">Post image</label>
-                          <input type="file" name="fileToUpload" required>
+                          <input type="file" name="image" required>
                       </div>
                       <input type="submit" name="submit" class="btn btn-primary" value="Save" required />
                   </form>

@@ -47,16 +47,20 @@ $result = mysqli_query($conn, $sql) or die("Query failed.");
                       </thead>
                       <tbody>
 
-                        <?php while ($rows = mysqli_fetch_assoc($result)) { ?>
+                        <?php 
+
+                        $serial_no = $offset + 1;
+
+                        while ($rows = mysqli_fetch_assoc($result)) { ?>
                           <tr>
-                              <td class='id'><?php echo $rows['user_id'] ?></td>
+                              <td class='id'><?php echo $serial_no ?></td>
                               <td><?php echo $rows['first_name'] ?> <?php echo $rows['last_name'] ?></td>
                               <td><?php echo $rows['username'] ?></td>
                               <td><?php echo ($rows['role']==1) ? "Admin" : "Normal user"; ?></td>
                               <td class='edit'><a href='update-user.php?id=<?php echo $rows['user_id'] ?>'><i class='fa fa-edit'></i></a></td>
                               <td class='delete'><a href='delete-user.php?id=<?php echo $rows['user_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
                            </tr>
-                           <?php } ?>
+                           <?php $serial_no++;} ?>
                       </tbody>
                   </table>
                   <?php } ?>
